@@ -4,23 +4,23 @@ export class ItemEditor extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { item: {}, submitted: false };
-
-        if (!this.props.item) {
-            return;
-        }
+        this.state = { submitted: false };
 
         this.titleRef = React.createRef();
         this.pictureRef = React.createRef();
         this.descriptionRef = React.createRef();
         this.formRef = React.createRef();
 
-        this.state.item.title = this.props.item.title || '';
-        this.state.item.description = this.props.item.description || '';
-        this.state.item.picture = this.props.item.picture || '';
+        const item = this.props.item || {};
+        this.state.item = {
+            _id: item._id,
+            title: item.title || '',
+            description: item.description || '',
+            picture: item.picture || ''
+        };
     }
     render() {
-        if (this.state.done || !this.props.item) {
+        if (this.state.done) {
             return (
                 <Redirect to='/'></Redirect>
             )
@@ -60,7 +60,8 @@ export class ItemEditor extends Component {
             this.setState({ submitted: true });
             return;
         }
-        Object.assign(this.props.item, this.state.item);
+        // Object.assign(this.props.item, this.state.item);
+        this.props.onUpdate(this.state.item);
         this.setState({ done: true });
     }
 

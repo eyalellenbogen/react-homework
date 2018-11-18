@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { About } from "./about/About";
 import { SideMenu } from "./side-menu/SideMenu";
 import { ItemList } from "./items/ItemList";
@@ -35,10 +35,10 @@ class App extends Component {
               <Route exact path="/" render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
               <Route path="/about" component={About} />
               <Route path="/edit" exact component={(props) => (
-                <ItemEditor {...props} item={this.state.items[this.state.items.push({ _id: this.getUniqueId() }) - 1]}></ItemEditor>
+                <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
               )}></Route>
               <Route path="/edit/:id" component={(props) => (
-                <ItemEditor {...props} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
+                <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
               )} />
               <Route path="/view/:id" component={(props) => (
                 <ItemViewer {...props} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
@@ -48,6 +48,19 @@ class App extends Component {
         </div>
       </Router>
     );
+  }
+
+  itemSaved(item) {
+    if (item._id) {
+      const target = this.state.items.filter(x => x._id === item._id)[0];
+      if (!target) {
+        throw Error('No item found');
+      }
+      Object.assign(target, item);
+    } else {
+      item._id = this.getUniqueId();
+      this.state.items.push(item);
+    }
   }
 
   getUniqueId() {
