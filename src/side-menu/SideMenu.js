@@ -10,7 +10,7 @@ export class SideMenu extends Component {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/edit">Add Item</Link>
+                        <Link to="/add">Add Item</Link>
                     </li>
                     <li>
                         <Link to="/about">About</Link>

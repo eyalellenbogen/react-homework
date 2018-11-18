@@ -34,7 +34,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/" render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
               <Route path="/about" component={About} />
-              <Route path="/edit" exact component={(props) => (
+              <Route path="/add" component={(props) => (
                 <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
               )}></Route>
               <Route path="/edit/:id" component={(props) => (
