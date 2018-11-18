@@ -1,34 +1,47 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 export class ItemEditor extends Component {
-
-
-
     constructor(props) {
         super(props);
+
+        this.state = { item: {}, submitted: false };
+
+        if (!this.props.item) {
+            return;
+        }
 
         this.titleRef = React.createRef();
         this.pictureRef = React.createRef();
         this.descriptionRef = React.createRef();
+        this.formRef = React.createRef();
 
-        this.state = { item: props.item };
+        this.state.item.title = this.props.item.title || '';
+        this.state.item.description = this.props.item.description || '';
+        this.state.item.picture = this.props.item.picture || '';
     }
     render() {
+        if (this.state.done || !this.props.item) {
+            return (
+                <Redirect to='/'></Redirect>
+            )
+        }
         return (
-            <form noValidate onSubmit={this.commitChanges.bind(this)}>
+            <form ref={this.formRef} noValidate onSubmit={this.commitChanges.bind(this)} className={this.state.submitted ? 'was-validated' : ''}>
                 <div className={"form-group " + (!this.titleRef.current || this.titleRef.current.validity.valid ? '' : 'invalid')} >
                     <label htmlFor="title">Title</label>
                     <input ref={this.titleRef} onChange={this.handleFormChange.bind(this)} name="title" value={this.state.item.title} required type="text" className="form-control" />
                 </div>
-                {/* <div className="form-group">
+                <div className={"form-group " + (!this.pictureRef.current || this.pictureRef.current.validity.valid ? '' : 'invalid')} >
                     <label htmlFor="picture">Image URL</label>
                     <input ref={this.pictureRef} onChange={this.handleFormChange.bind(this)} name="picture" value={this.state.item.picture} required pattern="^((http[s]?):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$" type="text" className="form-control" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
                     <textarea ref={this.descriptionRef} onChange={this.handleFormChange.bind(this)} name="description" type="text" className="form-control"></textarea>
-                </div> */}
+                </div>
 
-                <button type="submit">Save</button>
+                <button type="submit" className="btn btn-primary">Save</button>
+                <button className="ml-2 btn btn-light" onClick={this.cancel.bind(this)}>Cancel</button>
             </form>
         )
     }
@@ -38,14 +51,20 @@ export class ItemEditor extends Component {
         const item = this.state.item;
         item[p] = event.target.value;
         this.setState({ item });
-
     }
 
     commitChanges(ev) {
         ev.preventDefault();
+
+        if (!this.formRef.current.checkValidity()) {
+            this.setState({ submitted: true });
+            return;
+        }
+        Object.assign(this.props.item, this.state.item);
+        this.setState({ done: true });
     }
 
-    isInvalid(input) {
-        return Object.keys(input.valid)
+    cancel() {
+        this.setState({ done: true });
     }
 }
