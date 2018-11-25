@@ -7,13 +7,14 @@ export class SideMenu extends Component {
             <div className="side-menu">
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                       
+                        <Link to="/"><i className="fas fa-home"></i> Home</Link>
                     </li>
                     <li>
-                        <Link to="/add">Add Item</Link>
+                        <Link to="/add"><i className="fas fa-plus"></i> Add Item</Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/about"><i className="fas fa-info"></i> About</Link>
                     </li>
                 </ul>
             </div>

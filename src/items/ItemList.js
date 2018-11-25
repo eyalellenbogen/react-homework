@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
+import "./ItemList.scss";
+
 export class ItemList extends Component {
     constructor() {
         super();
@@ -10,26 +12,26 @@ export class ItemList extends Component {
         if (!this.props.items) {
             return;
         }
-        if(this.state.viewItem){
-            return(
-                <Redirect to={'/view/'+this.state.viewItem._id}></Redirect>
-            )
-        }
-        if (this.state.editItem) {
-            return (
-                <Redirect to={'/edit/' + this.state.editItem._id}></Redirect>
-            )
-        }
         return (
             <div className="items-panel">
                 {
                     this.props.items.map((x, i) => {
                         return (
-                            <div className="item" key={i}>
-                                <h2 className="title">{x.title}</h2>
-                                <img src={x.picture} style={{ width: 120 }} alt="" onClick={this.view.bind(this, x)} />
-                                <button className="delete" onClick={this.delete.bind(this, x)}>X</button>
-                                <button className="edit" onClick={this.edit.bind(this, x)}>edit</button>
+                            <div className="item" key={i} >
+                                <div className="item-view" onClick={this.view.bind(this, x)}
+                                    style={{ backgroundImage: "url(" + x.picture + ")" }} >
+                                    <div className="item-info">
+                                        <h2 className="title">{x.title}</h2>
+                                        <div className="actions">
+                                            <button className="edit" onClick={e => this.edit(x, e)}>
+                                                <i className="fas fa-edit"></i>
+                                            </button>
+                                            <button className="delete" onClick={e => this.delete(x, e)}>
+                                                <i className="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         )
                     })
@@ -38,17 +40,21 @@ export class ItemList extends Component {
         )
     }
 
-    edit(item) {
-        this.setState({ editItem: item });
+    edit(item, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.props.history.push('/edit/' + item._id);
     }
 
     view(item) {
-        this.setState({ viewItem: item });
+        this.props.history.push('/view/' + item._id);
     }
 
-    delete(item) {
+    delete(item, event) {
+        event.preventDefault();
+        event.stopPropagation();
         const idx = this.props.items.indexOf(item);
         this.props.items.splice(idx, 1);
-        this.forceUpdate();
+        this.forceUpdate(); // yeah yeah whatever
     }
 }

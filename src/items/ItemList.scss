@@ -1,0 +1,60 @@
+.items-panel {
+  padding-left: 10px;
+
+  > .item {
+    float: left;
+    width: 33.3%;
+
+    &:hover {
+      > .item-view {
+        > .item-info {
+          bottom: 0;
+        }
+      }
+    }
+
+    > .item-view {
+      $itemViewHeight: 40px;
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      > .item-info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: $itemViewHeight;
+        background-color: rgba(0,0,0,0.5);
+        bottom: -1 * $itemViewHeight;
+        transition: all .2s;
+        padding: 0 10px;
+
+        h2 {
+          margin: 0;
+          font-size: 1em;
+          color: #fff;
+          float: left;
+          line-height: $itemViewHeight;
+        }
+
+        .actions {
+          float: right;
+
+          button {
+            cursor: pointer;
+            border: 0;
+            background: none;
+            outline: none;
+            line-height: $itemViewHeight;
+            color: #fff;
+          }
+        }
+
+      }
+    }
+  }
+}

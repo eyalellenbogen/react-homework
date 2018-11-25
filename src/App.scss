@@ -1,32 +1,122 @@
-.App {
-  text-align: center;
+$headerHeight: 80px;
+$bgColor: #fff;
+$accent: #2a68a3;
+$topPadding: 20px;
+
+body {
+  height: 100%;
+  // background: linear-gradient(90deg, $bgColor2 50%, $bgColor 50%);
+  background: $bgColor;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+.header {
+  height: $headerHeight;
+  background-color: $accent;
+  color:#fff;
+  padding-top: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  h1 {
+    font-size: 30px;
+    line-height: 30px;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+
+  h4 {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 10px;
+  }
+}
+
+.app-content {
+  padding-top: $headerHeight;
+
+  .side-menu {
+    padding-top: $topPadding;
+    width: 200px;
+    position: fixed;
+    top: $headerHeight;
+    bottom: 0;
+    background: linear-gradient(90deg ,$bgColor,$bgColor 20%, darken($bgColor,5));
+    box-shadow:6px 0px 6px -6px #333;
+    margin-top:-6px;
+    margin-bottom: -6px;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        height: 50px;
+        font-size: 1.2em;
+        transition: all .2s;
+        background: none;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+          position: absolute;
+          content: "";
+          opacity: 0;
+          visibility: hidden;
+          transition: all .4s;
+          z-index: 1;
+          top: 0;
+          width: 100%;
+          right:-100%;
+          bottom: 0;
+          background: $bgColor;
+        }
+
+        &.active,
+        &:hover {
+          &:before {
+            right: 0;
+            opacity: 1;
+            visibility: visible;
+          }
+
+          a {
+            padding-left: 5px;
+          }
+
+        }
+
+        a {
+          color: #000;
+          transition: all .4s;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          line-height: 50px;
+          display: block;
+          width: 100%;
+
+          i {
+            display: inline-block;
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+          }
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    padding-left: 200px;
+    background-color: $bgColor;
+    width: 100%;
+    padding-top: $topPadding;
   }
 }

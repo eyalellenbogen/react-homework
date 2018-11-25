@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { About } from "./about/About";
 import { SideMenu } from "./side-menu/SideMenu";
 import { ItemList } from "./items/ItemList";
@@ -27,26 +27,36 @@ class App extends Component {
       return <div>loading...</div>
     }
     return (
-      <Router>
-        <div>
-          <SideMenu></SideMenu>
-          <div className="main-content">
-            <div className="container">
-              <Route exact path="/" render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
-              <Route path="/about" component={About} />
-              <Route path="/add" component={(props) => (
-                <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
-              )}></Route>
-              <Route path="/edit/:id" component={(props) => (
-                <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
-              )} />
-              <Route path="/view/:id" component={(props) => (
-                <ItemViewer {...props} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
-              )} />
-            </div>
+      <div>
+        <div className="header">
+          <div className="container">
+            <h1>
+              My Awesome Portfolio!
+          </h1>
+            <h4>It's not really my portfolio. I stole it.</h4>
           </div>
         </div>
-      </Router>
+        <Router>
+          <div className="app-content container">
+            <SideMenu></SideMenu>
+            <div className="main-content">
+              <div className="container">
+                <Route exact path="/" render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
+                <Route path="/about" component={About} />
+                <Route path="/add" component={(props) => (
+                  <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
+                )}></Route>
+                <Route path="/edit/:id" component={(props) => (
+                  <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
+                )} />
+                <Route path="/view/:id" component={(props) => (
+                  <ItemViewer {...props} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
+                )} />
+              </div>
+            </div>
+          </div>
+        </Router>
+      </div>
     );
   }
 
