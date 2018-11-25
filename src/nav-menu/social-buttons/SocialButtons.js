@@ -15,11 +15,18 @@ function SocialButtons() {
                         <i className='fab fa-twitter'></i>
                     </a>
                 </li>
-                <li className=''>
+                <li className='mr-3'>
                     <a href='https://www.linkedin.com/in/eyalellenbogen/' target='_blank'>
                         <i className='fab fa-linkedin'></i>
                     </a>
                 </li>
+                <li>
+                    <a href='https://www.instagram.com/eyalellenbogen/' target='_blank'>
+                        <i className='fab fa-instagram'></i>
+                    </a>
+                </li>
+
+                
             </ul>
         </div>
     )

@@ -34,7 +34,7 @@ class App extends Component {
             <h1>
               My Awesome Portfolio!
           </h1>
-            <h4>It's not really my portfolio. I stole it.</h4>
+            <h4>It's not really my portfolio ¯\_(ツ)_/¯</h4>
           </div>
         </div>
         <Router>
