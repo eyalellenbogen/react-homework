@@ -25,8 +25,6 @@ function SocialButtons() {
                         <i className='fab fa-instagram'></i>
                     </a>
                 </li>
-
-                
             </ul>
         </div>
     )
