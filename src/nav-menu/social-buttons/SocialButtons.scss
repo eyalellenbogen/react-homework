@@ -1,0 +1,22 @@
+@import "../../shared/vars";
+
+.social-buttons {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        font-size: 1.4em;
+        color: #ccc;
+        transition: all .2s;
+
+        &:hover {
+          text-decoration: none;
+          color: $accent;
+        }
+      }
+    }
+  }
+}

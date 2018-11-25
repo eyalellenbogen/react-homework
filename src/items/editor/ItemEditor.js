@@ -1,5 +1,7 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+
 export class ItemEditor extends Component {
     constructor(props) {
         super(props);
@@ -27,21 +29,21 @@ export class ItemEditor extends Component {
         }
         return (
             <form ref={this.formRef} noValidate onSubmit={this.commitChanges.bind(this)} className={this.state.submitted ? 'was-validated' : ''}>
-                <div className={"form-group " + (!this.titleRef.current || this.titleRef.current.validity.valid ? '' : 'invalid')} >
-                    <label htmlFor="title">Title</label>
-                    <input ref={this.titleRef} onChange={this.handleFormChange.bind(this)} name="title" value={this.state.item.title} required type="text" className="form-control" />
+                <div className={'form-group ' + (!this.titleRef.current || this.titleRef.current.validity.valid ? '' : 'invalid')} >
+                    <label htmlFor='title'>Title</label>
+                    <input ref={this.titleRef} onChange={this.handleFormChange.bind(this)} name='title' value={this.state.item.title} required type='text' className='form-control' />
                 </div>
-                <div className={"form-group " + (!this.pictureRef.current || this.pictureRef.current.validity.valid ? '' : 'invalid')} >
-                    <label htmlFor="picture">Image URL</label>
-                    <input ref={this.pictureRef} onChange={this.handleFormChange.bind(this)} name="picture" value={this.state.item.picture} required pattern="^((http[s]?):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$" type="text" className="form-control" />
+                <div className={'form-group ' + (!this.pictureRef.current || this.pictureRef.current.validity.valid ? '' : 'invalid')} >
+                    <label htmlFor='picture'>Image URL</label>
+                    <input ref={this.pictureRef} onChange={this.handleFormChange.bind(this)} name='picture' value={this.state.item.picture} required pattern='^((http[s]?):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$' type='text' className='form-control' />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="description">Description</label>
-                    <textarea ref={this.descriptionRef} onChange={this.handleFormChange.bind(this)} name="description" type="text" className="form-control"></textarea>
+                <div className='form-group'>
+                    <label htmlFor='description'>Description</label>
+                    <textarea ref={this.descriptionRef} onChange={this.handleFormChange.bind(this)} name='description' type='text' className='form-control'></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary">Save</button>
-                <button className="ml-2 btn btn-light" onClick={this.cancel.bind(this)}>Cancel</button>
+                <button type='submit' className='btn btn-primary'>Save</button>
+                <button className='ml-2 btn btn-light' onClick={this.cancel.bind(this)}>Cancel</button>
             </form>
         )
     }
@@ -68,4 +70,13 @@ export class ItemEditor extends Component {
     cancel() {
         this.setState({ done: true });
     }
+}
+
+ItemEditor.propTypes = {
+    item: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        picture: PropTypes.string,
+        _id: PropTypes.string
+    })
 }
