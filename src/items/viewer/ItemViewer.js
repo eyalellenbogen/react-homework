@@ -1,35 +1,41 @@
 import React, { Component } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { getPrice } from '../../shared/Utils';
 import './ItemViewer.scss';
 
 export class ItemViewer extends Component {
     constructor(props) {
         super(props);
-        this.state = { item: this.props.item };
+        this.state = {
+            item: this.props.item,
+            isLoggedIn: props.isLoggedIn
+        };
 
     }
     render(props) {
+        const button = this.state.isLoggedIn
+            ? (
+                <button className='btn btn-primary mr-2' onClick={this.add.bind(this)}>
+                    <i className='fas fa-plus'></i> Add to Cart
+                </button>
+            ) : null;
         return (
             <div className='item-view'>
                 <img src={this.state.item.picture} alt='' />
                 <div className='info'>
                     <h2>{this.state.item.title}</h2>
+                    <h4>{getPrice(this.state.item.price)}</h4>
                     <p>{this.state.item.description}</p>
-                    <div className='d-flex flex-row justify-content-between'>
-                        <button className='btn btn-link' onClick={this.goBack.bind(this)}>
-                            <i className='fas fa-chevron-left mr-2'></i>
-                            Back</button>
-                        <button className='btn btn-success mr-2' onClick={this.edit.bind(this)}>
-                            <i className='fas fa-edit mr-2'></i>
-                            Edit</button>
-                    </div>
+                    {button}
+
                 </div>
             </div>
         )
     }
 
-    edit() {
-        this.props.history.push('/edit/' + this.state.item._id);
+    add() {
+        this.props.addItem(this.state.item);
+        this.props.history.push('/cart');
     }
 
     goBack() {

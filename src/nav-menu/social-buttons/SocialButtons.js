@@ -6,22 +6,22 @@ function SocialButtons() {
         <div className='social-buttons mb-4'>
             <ul className='d-flex flex-row w-100'>
                 <li className='mr-3'>
-                    <a href='https://www.facebook.com/eyal453' target='_blank'>
+                    <a href='https://www.facebook.com/eyal453' rel="noopener noreferrer" target='_blank'>
                         <i className='fab fa-facebook'></i>
                     </a>
                 </li>
                 <li className='mr-3'>
-                    <a href='https://twitter.com/eyalel' target='_blank'>
+                    <a href='https://twitter.com/eyalel' rel="noopener noreferrer" target='_blank'>
                         <i className='fab fa-twitter'></i>
                     </a>
                 </li>
                 <li className='mr-3'>
-                    <a href='https://www.linkedin.com/in/eyalellenbogen/' target='_blank'>
+                    <a href='https://www.linkedin.com/in/eyalellenbogen/' rel="noopener noreferrer" target='_blank'>
                         <i className='fab fa-linkedin'></i>
                     </a>
                 </li>
                 <li>
-                    <a href='https://www.instagram.com/eyalellenbogen/' target='_blank'>
+                    <a href='https://www.instagram.com/eyalellenbogen/' rel="noopener noreferrer" target='_blank'>
                         <i className='fab fa-instagram'></i>
                     </a>
                 </li>

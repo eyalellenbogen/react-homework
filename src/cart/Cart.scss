@@ -1,0 +1,63 @@
+.cart-panel {
+  &.empty {
+    color: #555;
+    text-align: center;
+
+    img {
+      height: 300px;
+    }
+  }
+
+  > .item {
+    &:hover {
+      > .item-view {
+        > .item-info {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        > .price {
+          top: 50%;
+        }
+      }
+
+    }
+
+    > .item-view {
+      cursor: default;
+
+      > .price {
+        h4 {
+          text-align: center;
+          color: #fff;
+          font-size: 1em;
+        }
+
+      }
+
+      > .item-info {
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+
+        h2 {
+          position: absolute;
+          top: 0;
+          text-align: center;
+        }
+
+        .actions {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

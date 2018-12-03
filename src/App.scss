@@ -1,5 +1,9 @@
 @import "./shared/_vars";
 
+:root {
+  --accent-color: #a50010;
+}
+
 body {
   height: 100%;
   background: $bgColor;
@@ -8,7 +12,7 @@ body {
 
 .header {
   height: $headerHeight;
-  background-color: $accent;
+  background-color: var(--accent-color);
   color: #fff;
   padding-top: 10px;
   position: fixed;
@@ -17,33 +21,65 @@ body {
   top: 0;
   z-index: 1000;
 
-  h1 {
-    font-size: 30px;
-    line-height: 30px;
+  .container {
+    position: relative;
 
+    h1 {
+      font-size: 30px;
+      line-height: 30px;
+
+    }
+
+    h4 {
+      font-size: 14px;
+      line-height: 14px;
+      margin-top: 10px;
+    }
+
+    button.loginout {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      padding: 0;
+    }
   }
 
-  h4 {
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 10px;
-  }
+}
+
+.mmm {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .app-content {
   padding-top: $headerHeight;
 
   .side-panel {
+    $darkBg: #000;
     padding-top: $topPadding;
     width: 200px;
     position: fixed;
     top: $headerHeight;
     bottom: 0;
-    background: linear-gradient(90deg ,$bgColor,$bgColor 20%, darken($bgColor,5));
+    background: linear-gradient(90deg ,$darkBg,$darkBg 10%, lighten($darkBg,20));
     box-shadow: 6px 0 6px -6px #333;
     margin-top: -6px;
     margin-bottom: -6px;
+    z-index: 1;
 
+    &:before {
+      content: "";
+      display: block;
+      width: 5000px;
+      right: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background-color: $darkBg;
+    }
   }
 
   .main-content {
@@ -51,5 +87,6 @@ body {
     background-color: $bgColor;
     width: 100%;
     padding-top: $topPadding;
+
   }
 }

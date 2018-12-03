@@ -1,63 +1,87 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { About } from './about/About';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AboutPage } from './about/About';
 import { NavMenu } from './nav-menu/NavMenu';
+import { Header } from './header/Header';
 import { ItemList } from './items/ItemList';
 import { ItemEditor } from './items/editor/ItemEditor';
 import { ItemViewer } from './items/viewer/ItemViewer';
 import SocialButtons from './nav-menu/social-buttons/SocialButtons';
+import { HomePage } from './home/Home';
+import { Cart } from './cart/Cart';
+import { LoginPage } from './login/LoginPage';
+import withAuthGuard from './AuthRouteGuard';
 import './App.scss';
+import { ContactPage } from './contact/Contact';
 
 class App extends Component {
+  CartWithAuth = withAuthGuard(Cart, () => this.state.isLoggedIn, '/login');
 
   constructor() {
     super();
-    this.state = { items: [], loading: true }
+    this.state = {
+      items: [],
+      cartItems: [],
+      loading: true,
+      isLoggedIn: false
+    };
   }
 
   componentDidMount() {
     fetch('/item-list.json').then(res => {
       res.json().then(data => {
-        this.setState({ items: data, loading: false });
+        this.setState({
+          items: data,
+          loading: false
+        });
       })
     });
   }
 
   render() {
+
+
     if (this.state.loading) {
       return <div>loading...</div>
     }
     return (
       <div>
-        <div className='header'>
-          <div className='container'>
-            <h1>
-              My Awesome Portfolio!
-          </h1>
-            <h4>It's not really my portfolio ¯\_(ツ)_/¯</h4>
-          </div>
-        </div>
+        <Header></Header>
         <Router>
           <div className='app-content container'>
             <div className="side-panel d-flex flex-column justify-content-between">
-              <NavMenu></NavMenu>
+              <NavMenu isLoggedIn={this.state.isLoggedIn}
+                totalCart={this.getTotalCart()}
+                onLoggedOut={this.logout.bind(this)}></NavMenu>
               <div className="social-panel">
                 <SocialButtons></SocialButtons>
               </div>
             </div>
             <div className='main-content'>
               <div className='container'>
-                <Route exact path='/' render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
-                <Route path='/about' component={About} />
-                <Route path='/add' component={(props) => (
-                  <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
-                )}></Route>
-                <Route path='/edit/:id' component={(props) => (
-                  <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
-                )} />
-                <Route path='/view/:id' component={(props) => (
-                  <ItemViewer {...props} item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
-                )} />
+                <Switch>
+                  <Route exact path='/' render={(props) => (<HomePage {...props} items={this.state.items}></HomePage>)} />
+                  <Route exact path='/products' render={(props) => (<ItemList {...props} items={this.state.items}></ItemList>)} />
+                  <Route path='/login' render={(props) => (<LoginPage {...props} onLogin={this.updateLoginState.bind(this, true)}></LoginPage>)} />
+                  <Route path='/cart' >
+                    <this.CartWithAuth
+                      addItem={this.addItem.bind(this)}
+                      removeItem={this.removeItem.bind(this)}
+                      items={this.state.cartItems}
+                    ></this.CartWithAuth>
+                  </Route>
+                  <Route path='/about' component={AboutPage} />
+                  <Route path='/contact' component={ContactPage} />
+                  <Route path='/add' component={(props) => (
+                    <ItemEditor {...props} onUpdate={this.itemSaved.bind(this)}></ItemEditor>
+                  )}></Route>
+                  <Route path='/products/:id' component={(props) => (
+                    <ItemViewer {...props}
+                      addItem={this.addItem.bind(this)}
+                      isLoggedIn={this.state.isLoggedIn}
+                      item={this.state.items.filter(x => x._id === props.match.params.id)[0]} />
+                  )} />
+                </Switch>
               </div>
             </div>
           </div>
@@ -66,21 +90,47 @@ class App extends Component {
     );
   }
 
-  itemSaved(item) {
-    if (item._id) {
-      const target = this.state.items.filter(x => x._id === item._id)[0];
-      if (!target) {
-        throw Error('No item found');
-      }
-      Object.assign(target, item);
+  addItem(item) {
+    const cart = this.state.cartItems;
+    const target = cart[item._id];
+    if (target) {
+      target.count++;
     } else {
-      item._id = this.getUniqueId();
-      this.state.items.push(item);
+      cart[item._id] = { item: item, count: 1 };
     }
+
+    this.setState({ cart: Object.assign({}, cart) });
   }
 
-  getUniqueId() {
-    return Math.random().toString(36).substr(2, 9);
+  removeItem(item) {
+    const cart = this.state.cartItems;
+    const target = cart[item._id];
+    if (!target) {
+      return;
+    }
+    target.count--;
+    if (target.count === 0) {
+      delete cart[item._id];
+    }
+
+    this.setState({ cart: Object.assign({}, cart) });
+  }
+
+  getTotalCart() {
+    var res = Object.keys(this.state.cartItems)
+      .reduce((prev, cur) => {
+        const target = this.state.cartItems[cur];
+        return prev += target.count * target.item.price;
+      }, 0);
+    return res;
+  }
+
+  logout() {
+    this.setState({ isLoggedIn: false });
+  }
+
+  updateLoginState(isLoggedIn) {
+    this.setState({ isLoggedIn: isLoggedIn });
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { getPrice } from '../shared/Utils';
 
 import './ItemList.scss';
 
@@ -24,14 +25,10 @@ export class ItemList extends Component {
                                     style={{ backgroundImage: 'url(' + x.picture + ')' }} >
                                     <div className='item-info'>
                                         <h2 className='title'>{x.title}</h2>
-                                        <div className='actions'>
-                                            <button className='edit' onClick={e => this.edit(x, e)}>
-                                                <i className='fas fa-edit'></i>
-                                            </button>
-                                            <button className='delete' onClick={e => this.delete(x, e)}>
-                                                <i className='fas fa-trash'></i>
-                                            </button>
-                                        </div>
+                                        <p className='desc'>{x.description}</p>
+                                    </div>
+                                    <div className="price">
+                                        <h2>{getPrice(x.price)}</h2>
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +39,8 @@ export class ItemList extends Component {
         )
     }
 
-    edit(item, event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.props.history.push('/edit/' + item._id);
-    }
-
     view(item) {
-        this.props.history.push('/view/' + item._id);
+        this.props.history.push('/products/' + item._id);
     }
 
     delete(item, event) {

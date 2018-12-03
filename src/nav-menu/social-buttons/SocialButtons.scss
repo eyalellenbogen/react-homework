@@ -14,7 +14,7 @@
 
         &:hover {
           text-decoration: none;
-          color: $accent;
+          color: var(--accent-color);
         }
       }
     }

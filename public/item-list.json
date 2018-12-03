@@ -1,87 +1,121 @@
 [
-    {
-      "_id": "5bf01ea3e4e0d6221fa4f499",
-      "picture": "https://picsum.photos/400/?image=10",
-      "title": "Something 0"
-    },
-    {
-      "_id": "5bf01ea328b4477a81d99f56",
-      "picture": "https://picsum.photos/400/?image=11",
-      "title": "Something 1"
-    },
-    {
-      "_id": "5bf01ea30bf7a33134b4e230",
-      "picture": "https://picsum.photos/400/?image=12",
-      "title": "Something 2"
-    },
-    {
-      "_id": "5bf01ea3e9fd84fd57bb0f13",
-      "picture": "https://picsum.photos/400/?image=13",
-      "title": "Something 3"
-    },
-    {
-      "_id": "5bf01ea33cfa82796888219c",
-      "picture": "https://picsum.photos/400/?image=14",
-      "title": "Something 4"
-    },
-    {
-      "_id": "5bf01ea3d008ab50f396aeb9",
-      "picture": "https://picsum.photos/400/?image=15",
-      "title": "Something 5"
-    },
-    {
-      "_id": "5bf01ea3e826328f86eee702",
-      "picture": "https://picsum.photos/400/?image=16",
-      "title": "Something 6"
-    },
-    {
-      "_id": "5bf01ea38d79e32db1a1c5da",
-      "picture": "https://picsum.photos/400/?image=17",
-      "title": "Something 7"
-    },
-    {
-      "_id": "5bf01ea38a1d80d6674fb6be",
-      "picture": "https://picsum.photos/400/?image=18",
-      "title": "Something 8"
-    },
-    {
-      "_id": "5bf01ea397363bb08db5a2bc",
-      "picture": "https://picsum.photos/400/?image=19",
-      "title": "Something 9"
-    },
-    {
-      "_id": "5bf01ea30bae480b080d9d6a",
-      "picture": "https://picsum.photos/400/?image=20",
-      "title": "Something 10"
-    },
-    {
-      "_id": "5bf01ea3c27f14bbcadc1109",
-      "picture": "https://picsum.photos/400/?image=21",
-      "title": "Something 11"
-    },
-    {
-      "_id": "5bf01ea374c69b4bc2ee0176",
-      "picture": "https://picsum.photos/400/?image=22",
-      "title": "Something 12"
-    },
-    {
-      "_id": "5bf01ea3424f80599d06a0b6",
-      "picture": "https://picsum.photos/400/?image=23",
-      "title": "Something 13"
-    },
-    {
-      "_id": "5bf01ea303ae4f80450ba816",
-      "picture": "https://picsum.photos/400/?image=24",
-      "title": "Something 14"
-    },
-    {
-      "_id": "5bf01ea3a858e3c7e285983d",
-      "picture": "https://picsum.photos/400/?image=25",
-      "title": "Something 15"
-    },
-    {
-      "_id": "5bf01ea3be0fb4fab5a21647",
-      "picture": "https://picsum.photos/400/?image=26",
-      "title": "Something 16"
-    }
-  ]
+  {
+    "_id": "5bf01ea3e4e0d6221fa4f499",
+    "picture": "https://picsum.photos/400/?image=10",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    "price": 30,
+    "title": "Something 0"
+  },
+  {
+    "_id": "5bf01ea328b4477a81d99f56",
+    "picture": "https://picsum.photos/400/?image=11",
+    "description": "Lorem ipsum dolor sit amet consectetur",
+    "price": 24,
+    "title": "Something 1"
+  },
+  {
+    "_id": "5bf01ea30bf7a33134b4e230",
+    "picture": "https://picsum.photos/400/?image=12",
+    "description": "amet consectetur adipisicing elit",
+    "price": 13,
+    "title": "Something 2"
+  },
+  {
+    "_id": "5bf01ea3e9fd84fd57bb0f13",
+    "picture": "https://picsum.photos/400/?image=13",
+    "description": "Cupiditate aliquam delectus tenetur suscipit quis in ducimus",
+    "price": 36,
+    "title": "Something 3"
+  },
+  {
+    "_id": "5bf01ea33cfa82796888219c",
+    "picture": "https://picsum.photos/400/?image=14",
+    "description": "delectus tenetur suscipit quis in ducimus amet exercitationem quod reprehenderit, placeat dolorum? Deserunt quam ipsum temporibus provident eius fugiat!",
+    "price": 30,
+    "title": "Something 4"
+  },
+  {
+    "_id": "5bf01ea3d008ab50f396aeb9",
+    "picture": "https://picsum.photos/400/?image=15",
+    "description": "Lorem ipsum dolor sit amet consectetur",
+    "price": 22,
+    "title": "Something 5"
+  },
+  {
+    "_id": "5bf01ea3e826328f86eee702",
+    "picture": "https://picsum.photos/400/?image=16",
+    "description": "amet consectetur adipisicing elit",
+    "price": 11,
+    "title": "Something 6"
+  },
+  {
+    "_id": "5bf01ea38d79e32db1a1c5da",
+    "picture": "https://picsum.photos/400/?image=17",
+    "description": "Cupiditate aliquam delectus tenetur suscipit quis in ducimus",
+    "price": 45,
+    "title": "Something 7"
+  },
+  {
+    "_id": "5bf01ea38a1d80d6674fb6be",
+    "picture": "https://picsum.photos/400/?image=18",
+    "description": "delectus tenetur suscipit quis in ducimus amet exercitationem quod reprehenderit, placeat dolorum? Deserunt quam ipsum temporibus provident eius fugiat!",
+    "price": 52,
+    "title": "Something 8"
+  },
+  {
+    "_id": "5bf01ea397363bb08db5a2bc",
+    "picture": "https://picsum.photos/400/?image=19",
+    "description": "lorem",
+    "price": 12,
+    "title": "Something 9"
+  },
+  {
+    "_id": "5bf01ea30bae480b080d9d6a",
+    "picture": "https://picsum.photos/400/?image=20",
+    "description": "Lorem ipsum dolor sit amet consectetur",
+    "price": 33,
+    "title": "Something 10"
+  },
+  {
+    "_id": "5bf01ea3c27f14bbcadc1109",
+    "picture": "https://picsum.photos/400/?image=21",
+    "description": "amet consectetur adipisicing elit",
+    "price": 37,
+    "title": "Something 11"
+  },
+  {
+    "_id": "5bf01ea374c69b4bc2ee0176",
+    "picture": "https://picsum.photos/400/?image=22",
+    "description": "Cupiditate aliquam delectus tenetur suscipit quis in ducimus",
+    "price": 38,
+    "title": "Something 12"
+  },
+  {
+    "_id": "5bf01ea3424f80599d06a0b6",
+    "picture": "https://picsum.photos/400/?image=23",
+    "description": "delectus tenetur suscipit quis in ducimus amet exercitationem quod reprehenderit, placeat dolorum? Deserunt quam ipsum temporibus provident eius fugiat!",
+    "price": 50,
+    "title": "Something 13"
+  },
+  {
+    "_id": "5bf01ea303ae4f80450ba816",
+    "picture": "https://picsum.photos/400/?image=24",
+    "description": "Lorem ipsum dolor sit amet consectetur",
+    "price": 45,
+    "title": "Something 14"
+  },
+  {
+    "_id": "5bf01ea3a858e3c7e285983d",
+    "picture": "https://picsum.photos/400/?image=25",
+    "description": "amet consectetur adipisicing elit",
+    "price": 30,
+    "title": "Something 15"
+  },
+  {
+    "_id": "5bf01ea3be0fb4fab5a21647",
+    "picture": "https://picsum.photos/400/?image=26",
+    "description": "Cupiditate aliquam delectus tenetur suscipit quis in ducimus",
+    "price": 65,
+    "title": "Something 16"
+  }
+]
