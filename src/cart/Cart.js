@@ -37,6 +37,7 @@ export class Cart extends Component {
         }
         return (
             <div className='items-panel cart-panel clearfix'>
+                <h1>Your Cart</h1>
                 {
                     this.state.items.map((x, i) => {
                         return (
