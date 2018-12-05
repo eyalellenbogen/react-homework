@@ -1,5 +1,34 @@
 $headerHeight: 80px;
-$bgColor: #fff;
-$accent: #377ecf;
 $topPadding: 20px;
 
+$colors:(
+    bgColor: #fff, 
+    accent: #b902d0, 
+    bgColor2:#000
+);
+
+$props: (
+  background-color: $colors,
+  color:            $colors
+);
+
+$map-maps: (
+  background-color: colors,
+  color: colors,
+  outline-color: colors
+);
+
+@mixin v($prop,$var) {
+    // get the map from map name
+    $map: map-get($props, $prop);
+    // fallback value, grab the variable's value from the map
+    $var-fall: map-get($map, $var);
+    // our css4 variable output
+
+    $map-name: map-get($map-maps, $prop);
+    $var-output: var(--#{$map-name}-#{$var});
+
+    #{$prop}: $var-fall;
+    // css4 variable output
+    #{$prop}: $var-output;
+}

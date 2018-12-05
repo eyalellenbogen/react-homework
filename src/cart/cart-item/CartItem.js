@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getPrice } from '../../shared/Utils';
 export function CartItem(props) {
     return (
@@ -26,3 +27,13 @@ export function CartItem(props) {
         </div>
     )
 }
+
+CartItem.propTypes = {
+    item: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.number,
+        picture: PropTypes.string,
+        _id: PropTypes.string
+    })
+};

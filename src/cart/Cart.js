@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import './Cart.scss';
+import PropTypes from 'prop-types';
 import { CartItem } from './cart-item/CartItem';
+
+import './Cart.scss';
 
 export class Cart extends Component {
     constructor(props) {
@@ -45,4 +47,13 @@ export class Cart extends Component {
             </div>
         )
     }
+}
+Cart.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        picture: PropTypes.string,
+        price: PropTypes.number,
+        _id: PropTypes.string
+    }))
 }

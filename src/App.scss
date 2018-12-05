@@ -1,18 +1,20 @@
 @import "./shared/_vars";
 
 :root {
-  --accent-color: #a50010;
+  @each $name, $color in $colors {
+    --colors-#{$name}: #{$color};
+  }
 }
 
 body {
   height: 100%;
-  background: $bgColor;
+  @include v(background-color,bgColor);
   overflow-y: scroll;
 }
 
 .header {
   height: $headerHeight;
-  background-color: var(--accent-color);
+  @include v(background-color,accent);
   color: #fff;
   padding-top: 10px;
   position: fixed;
@@ -78,13 +80,12 @@ body {
       position: absolute;
       top: 0;
       bottom: 0;
-      background-color: $darkBg;
+      @include v(background-color,bgColor2);
     }
   }
 
   .main-content {
     padding-left: 200px;
-    background-color: $bgColor;
     width: 100%;
     padding-top: $topPadding;
 
