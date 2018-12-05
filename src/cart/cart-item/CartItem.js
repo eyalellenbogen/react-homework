@@ -29,11 +29,14 @@ export function CartItem(props) {
 }
 
 CartItem.propTypes = {
-    item: PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        price: PropTypes.number,
-        picture: PropTypes.string,
-        _id: PropTypes.string
+    target: PropTypes.shape({
+        item: PropTypes.shape({
+            title: PropTypes.string,
+            description: PropTypes.string,
+            price: PropTypes.number,
+            picture: PropTypes.string,
+            _id: PropTypes.string
+        }),
+        count: PropTypes.number,
     })
 };
