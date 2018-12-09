@@ -48,38 +48,36 @@ body {
 
 }
 
-.mmm {
-  position: absolute;
-  top: 0;
-  right: 0;
+.side-panel {
+  $darkBg: #000;
+  width: 200px;
+
+  background: linear-gradient(90deg ,$darkBg,$darkBg 10%, lighten($darkBg,20));
+  box-shadow: 6px 0 6px -6px #333;
+  margin-top: -6px;
+  margin-bottom: -6px;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 5000px;
+    right: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: $darkBg;
+  }
 }
 
 .app-content {
   padding-top: $headerHeight;
 
   .side-panel {
-    $darkBg: #000;
     padding-top: $topPadding;
-    width: 200px;
     position: fixed;
     top: $headerHeight;
     bottom: 0;
-    background: linear-gradient(90deg ,$darkBg,$darkBg 10%, lighten($darkBg,20));
-    box-shadow: 6px 0 6px -6px #333;
-    margin-top: -6px;
-    margin-bottom: -6px;
-    z-index: 1;
-
-    &:before {
-      content: "";
-      display: block;
-      width: 5000px;
-      right: 100%;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      background-color: $darkBg;
-    }
   }
 
   .main-content {
